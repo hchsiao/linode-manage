@@ -9,6 +9,7 @@ GIT_EMAIL=hchsiao@vlsilab.ee.ncku.edu.tw
 # Create user for daily use
 useradd $USERNAME
 mkdir -p /home/$USERNAME
+cd /home/$USERNAME
 
 # Copy public key for login
 cp -r $HOME/.ssh /home/$USERNAME
