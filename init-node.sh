@@ -33,3 +33,6 @@ chsh hchsiao -s $(grep "fish" /etc/shells)
 # Setup git
 su $USERNAME -c "git config --global user.email $GIT_EMAIL"
 su $USERNAME -c "git config --global user.name $USERNAME"
+
+# Setup rclone (to mount Google Drive, retaining state across VMs)
+curl https://rclone.org/install.sh | bash
