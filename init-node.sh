@@ -13,7 +13,6 @@ cd /home/$USERNAME
 
 # Copy public key for login
 cp -r $HOME/.ssh /home/$USERNAME
-chown -R $USERNAME:$USERNAME /home/$USERNAME
 
 # Allow sudo without password
 echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -37,3 +36,10 @@ su $USERNAME -c "git config --global user.name $USERNAME"
 
 # Setup rclone (to mount Google Drive, retaining state across VMs)
 curl https://rclone.org/install.sh | bash
+
+# Copy config
+cp config/fish/config.fish /home/$USERNAME/.config/fish/config.fish
+cp tmux.conf /home/$USERNAME/.tmux.conf
+
+# chown for the new user
+chown -R $USERNAME:$USERNAME /home/$USERNAME
