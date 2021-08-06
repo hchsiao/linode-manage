@@ -13,6 +13,7 @@ cd /home/$USERNAME
 
 # Copy public key for login
 cp -r $HOME/.ssh /home/$USERNAME
+chown -R $USERNAME:$USERNAME /home/$USERNAME
 
 # Allow sudo without password
 echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -21,6 +22,7 @@ echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 passwd -d root
 
 # Setup editor
+apt update
 apt install -y ctags
 su $USERNAME -c "git clone --recursive https://github.com/hchsiao/vim-env.git /home/$USERNAME/.vim"
 
@@ -40,6 +42,4 @@ curl https://rclone.org/install.sh | bash
 # Copy config
 cp config/fish/config.fish /home/$USERNAME/.config/fish/config.fish
 cp tmux.conf /home/$USERNAME/.tmux.conf
-
-# chown for the new user
 chown -R $USERNAME:$USERNAME /home/$USERNAME
