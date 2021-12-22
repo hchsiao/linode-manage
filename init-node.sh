@@ -2,6 +2,7 @@
 # Description: My Linode initialization script.
 #              The node should be created with at
 #              least a public key attached.
+set -e
 
 USERNAME=hchsiao
 GIT_EMAIL=hchsiao@vlsilab.ee.ncku.edu.tw
@@ -9,7 +10,6 @@ GIT_EMAIL=hchsiao@vlsilab.ee.ncku.edu.tw
 # Create user for daily use
 useradd $USERNAME
 mkdir -p /home/$USERNAME
-cd /home/$USERNAME
 
 # Copy public key for login
 cp -r $HOME/.ssh /home/$USERNAME
@@ -29,7 +29,7 @@ su $USERNAME -c "git clone --recursive https://github.com/hchsiao/vim-env.git /h
 # Setup shell
 apt-add-repository -y ppa:fish-shell/release-3
 apt-get update
-apt-get install -y fish
+apt-get install -y fish fzf
 chsh hchsiao -s $(grep "fish" /etc/shells)
 
 # Setup git
