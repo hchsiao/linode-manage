@@ -32,10 +32,6 @@ apt-get update
 apt-get install -y fish fzf
 chsh hchsiao -s $(grep "fish" /etc/shells)
 
-# Setup git
-su $USERNAME -c "git config --global user.email $GIT_EMAIL"
-su $USERNAME -c "git config --global user.name $USERNAME"
-
 # Setup rclone (to mount Google Drive, retaining state across VMs)
 curl https://rclone.org/install.sh | bash
 
@@ -43,3 +39,8 @@ curl https://rclone.org/install.sh | bash
 cp config/fish/config.fish /home/$USERNAME/.config/fish/config.fish
 cp tmux.conf /home/$USERNAME/.tmux.conf
 chown -R $USERNAME:$USERNAME /home/$USERNAME
+
+# Setup git
+cd /home/$USERNAME
+su $USERNAME -c "git config --global user.email $GIT_EMAIL"
+su $USERNAME -c "git config --global user.name $USERNAME"
