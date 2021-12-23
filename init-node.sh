@@ -26,8 +26,6 @@ echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 passwd -d root
 
 # Setup editor
-apt update
-apt install -y ctags
 su $USERNAME -c "git clone --recursive https://github.com/hchsiao/vim-env.git /home/$USERNAME/.vim"
 
 # Setup shell
