@@ -6,6 +6,7 @@ set -e
 
 USERNAME=hchsiao
 GIT_EMAIL=hchsiao@vlsilab.ee.ncku.edu.tw
+WORKDIR=$(dirname "$0")
 
 # Change hostname
 hostname $USERNAME-linode
@@ -39,7 +40,7 @@ chsh hchsiao -s $(grep "fish" /etc/shells)
 curl https://rclone.org/install.sh | bash
 
 # Copy config
-cp config/fish/config.fish /home/$USERNAME/.config/fish/config.fish
+cp $WORKDIR/config/fish/config.fish /home/$USERNAME/.config/fish/config.fish
 cp tmux.conf /home/$USERNAME/.tmux.conf
 chown -R $USERNAME:$USERNAME /home/$USERNAME
 
