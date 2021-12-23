@@ -1,25 +1,31 @@
 #!/bin/bash
 set -e
 
+# NOTE: rclone cmd
+# fusermount -u $HOME/gdrive_music
+# rclone copy gdrive:airsonic/data.tar.gz /tmp
+
 # TODO: can use same database for different VM instance? (so don't need re-scan media)
 # TODO: rclone read-only mode
 
-# Pre-setup:
-# Config rclone
-# Mount
+MUSIC_DIR=$HOME/gdrive_music
+AIRSONIC_DIR=$HOME/airsonic
 
-if [ -f "/tmp/airsonic.war" ]; then
+# Pre-setup:
+#rclone config
+#mkdir -p $MUSIC_DIR
+#rclone mount --daemon gdrive:airsonic/music $MUSIC_DIR
+# (optional) Recover airsonic settings
+
+if [ -f "$AIRSONIC_DIR/airsonic.war" ]; then
   echo "war file exists."
 else
   sudo apt-get install -y ffmpeg lame openssl ca-certificates openjdk-11-jre
   gpg --keyserver keyserver.ubuntu.com --recv 0A3F5E91F8364EDF
-  wget https://github.com/airsonic/airsonic/releases/download/v10.6.2/airsonic.war --output-document=/tmp/airsonic.war
+  wget https://github.com/airsonic/airsonic/releases/download/v10.6.2/airsonic.war --output-document=$AIRSONIC_DIR/airsonic.war
 fi
 
-AIRSONIC_DIR=$HOME/airsonic
-MUSIC_DIR=$HOME/music
 mkdir -p $AIRSONIC_DIR/data
-mkdir -p $AIRSONIC_DIR/music
 mkdir -p $AIRSONIC_DIR/podcasts
 mkdir -p $AIRSONIC_DIR/playlists
 mkdir -p $AIRSONIC_DIR/data/transcode
@@ -34,7 +40,7 @@ java \
   -Dairsonic.defaultPodcastFolder=$AIRSONIC_DIR/podcasts \
   -Dairsonic.defaultPodcastFolder=$AIRSONIC_DIR/podcasts \
   -Dairsonic.defaultPlaylistFolder=$AIRSONIC_DIR/playlists \
-  -jar /tmp/airsonic.war
+  -jar $AIRSONIC_DIR/airsonic.war
 
 # Post-setup:
 # Change admin password
