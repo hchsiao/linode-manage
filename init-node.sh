@@ -40,6 +40,7 @@ chsh hchsiao -s $(grep "fish" /etc/shells)
 curl https://rclone.org/install.sh | bash
 
 # Copy config
+mkdir -p /home/$USERNAME/.config/fish
 cp $WORKDIR/config/fish/config.fish /home/$USERNAME/.config/fish/config.fish
 cp tmux.conf /home/$USERNAME/.tmux.conf
 chown -R $USERNAME:$USERNAME /home/$USERNAME
