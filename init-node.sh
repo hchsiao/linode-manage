@@ -7,6 +7,9 @@ set -e
 USERNAME=hchsiao
 GIT_EMAIL=hchsiao@vlsilab.ee.ncku.edu.tw
 
+# Change hostname
+hostname $USERNAME-linode
+
 # Create user for daily use
 useradd $USERNAME
 mkdir -p /home/$USERNAME
