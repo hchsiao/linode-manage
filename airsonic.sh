@@ -5,8 +5,8 @@ set -e
 # fusermount -u $HOME/gdrive_music
 # rclone copy gdrive:airsonic/data.tar.gz /tmp
 
-# TODO: can use same database for different VM instance? (so don't need re-scan media)
-# TODO: rclone read-only mode
+# Same database can be used for different VM instance (i.e. don't need re-scan media)
+# Better security: rclone read-only mode
 
 MUSIC_DIR=$HOME/gdrive_music
 AIRSONIC_DIR=$HOME/airsonic
