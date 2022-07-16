@@ -1,4 +1,5 @@
 # linode-manage
+TODO: create 'dotfiles' to manage configs and use `stow` to install them
 
 ## Manual steps
 - Install anaconda
