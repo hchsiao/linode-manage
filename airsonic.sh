@@ -11,11 +11,19 @@ set -e
 MUSIC_DIR=$HOME/gdrive_music
 AIRSONIC_DIR=$HOME/airsonic
 
+mkdir -p $MUSIC_DIR
+mkdir -p $AIRSONIC_DIR
+
 # Pre-setup:
 #rclone config
 #mkdir -p $MUSIC_DIR
 #rclone mount --daemon gdrive:airsonic/music $MUSIC_DIR
 # (optional) Recover airsonic settings
+
+if mountpoint $MUSIC_DIR; then
+  fusermount -u $MUSIC_DIR
+fi
+rclone mount --daemon gdrive:airsonic/music $MUSIC_DIR
 
 if [ -f "$AIRSONIC_DIR/airsonic.war" ]; then
   echo "war file exists."

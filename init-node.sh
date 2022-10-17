@@ -35,7 +35,8 @@ apt-get install -y fish fzf
 chsh hchsiao -s $(grep "fish" /etc/shells)
 
 # Setup rclone (to mount Google Drive, retaining state across VMs)
-curl https://rclone.org/install.sh | bash
+RCLONE_VERSION="v1.53.1"
+curl https://rclone.org/install.sh | sed "s/rclone-current/rclone-$RCLONE_VERSION/g" | sed "s/downloads.rclone.org\/rclone-/downloads.rclone.org\/$RCLONE_VERSION\/rclone-/" | bash
 
 # Copy config
 mkdir -p /home/$USERNAME/.config/fish
